@@ -17,3 +17,4 @@ int main() {
    cout<<count(n);
  
 }
+//int cnt=(int)(log10(n)+1)
