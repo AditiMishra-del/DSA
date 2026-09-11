@@ -15,3 +15,9 @@ int main() {
    divisor(n);
  
 }
+/* for(int i=1;i<=sqrt(n);i++){
+if(n%i==0)
+print i;
+if(n/i!=1)
+cout n/i;}
+another way of doing it having less time complexity*/
