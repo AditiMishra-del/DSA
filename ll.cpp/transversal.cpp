@@ -26,6 +26,10 @@ node* convert2ll(vector<int> &arr){
 int main() {
 	vector<int>arr={12,5,7,6};
 	node* head=convert2ll(arr);
-	cout<<head->data;
+	node* temp=head;
+    while(head){
+        cout<<temp->data;
+        temp=temp->next;
+    }
 
 }
