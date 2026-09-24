@@ -1,0 +1,36 @@
+#include <bits/stdc++.h>
+using namespace std;
+class node{
+    public:
+    int data;
+    node *next.*prev;
+    node(){
+        this->data =0;
+        next=NULL;
+        prev=NULL;
+    }
+    node(int data){
+        this->data=data;
+        this->next=NULL;
+        this->prev=NULL;
+    }
+    node(int data, node *next,node *prev){
+        this->data=data;
+        this->next=next;
+        this->prev=prev;
+    }
+    node reversedll(node *head){
+        if(head==NULL || head->next==NULL) {
+            return head;
+        }
+        node *prev=NULL;
+        node *current=head;
+        while(current!=NULL){
+            prev =current->prev;
+            current->prev=current->next;
+            current->next=prev;
+            current=current->back;
+        }
+        return prev->prev;
+    }
+}
