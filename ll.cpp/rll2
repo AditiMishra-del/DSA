@@ -1,0 +1,14 @@
+class solution{
+    public:
+    listnode * curr=head;*prev=NULL,*fut=NULL;
+        
+        listnode* temp=head;
+        while(curr){
+            fut=curr->next;
+            curr->next=prev;
+            prev=curr;
+            curr=fut;
+        }
+        head=prev;
+        return head;
+    }
