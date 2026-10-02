@@ -1,0 +1,42 @@
+class Solution {
+public:
+    ListNode* rotateRight(ListNode* head, int k) {
+        if (head == NULL || head->next == NULL) return head;
+
+    vector<int> ans;
+    int count = 0;
+    ListNode* curr = head;
+
+    // Count nodes
+    while (curr) {
+        curr = curr->next;
+        count++;
+    }
+
+    k %= count;
+    if (k == 0) return head;
+
+    // Store values
+    curr = head;
+    while (curr) {
+        ans.push_back(curr->val);
+        curr = curr->next;
+    }
+
+    // Reset pointer for value reassignment
+    curr = head;
+    for (int i = count - k; i < count; i++) {
+        curr->val = ans[i];
+        curr = curr->next;
+    }
+
+    for (int i = 0; i < count - k; i++) {
+        curr->val = ans[i];
+        curr = curr->next;
+    }
+
+    return head;
+}
+
+
+};
