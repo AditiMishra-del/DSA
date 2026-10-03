@@ -1,0 +1,34 @@
+int main() {
+    //start
+   if(head!=NULL){
+       //if only 1 node exist
+       if(head->next==NULL){
+           delete head;
+           head=NULL;
+       }
+       //if more than 1 node exist
+       else
+       {node *temp=head;
+       head=head->next;
+       delete temp;
+       if(head)
+       head->prev=NULL;
+       }
+   }
+	  //end
+	  if(head!=NULL){
+	      //if only 1 node exist
+         if(head->next==NULL){
+           delete head;
+           head=NULL;
+         }
+       //if more than 1 node exist
+       else{
+           node* curr=head;
+           while(curr->next)
+           curr=curr->next;
+           
+           curr->prev->next=NULL;
+           delete curr;
+       }
+	}
