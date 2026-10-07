@@ -1,0 +1,48 @@
+node * reverse(node *curr,node *prev){
+    if(curr==NULL)  return prev;
+    node *front= curr->next;
+    curr->next=prev;
+    return reverse(front,curr);
+}
+struct node *add2list(struct node*first,struct node *second){
+    first=reverse(first,NULL);
+    second=reverse(second,NULL);
+    
+    node *curr1=first,*curr2=second;
+    node *head=new node(0);
+    node *tail=head;
+    int sum,carry=0;
+    
+    while(curr1&&curr2){
+        sum=curr1->data+curr2->data+carry;
+        tail->next=new node(sum%10);
+        curr1=curr1->next;
+        curr2=curr2->next;
+        tail=tail->next;    
+        carry/=10;
+    }
+    
+    while(curr1){
+        sum=curr1->data+carry;
+        tail->next=new node(sum%10);
+        curr1=curr1->next;
+        tail=tail->next;
+        carry/=10;
+    }
+    
+    while(curr2){
+        sum=curr2->data+carry;
+        tail->next=new node(sum%10);
+        curr2=curr2->next;
+        tail=tail->next;
+        carry/=10;
+    }
+    
+    while(carry){
+        tail->next=new node(carry%10);
+        tail=tail->next;
+        carry/=10;
+    }
+    head=reverse(head->next,NULL);
+    return head;
+}
