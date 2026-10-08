@@ -26,7 +26,7 @@ node *merge(node *head1,node *head2) {
 	    if(head1) tail->bottom =head1;
 	    else    tail->bottom =head2;
 	    
-	    return head->next;
+	    return head->bottom;
 	}
 }
 
