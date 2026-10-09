@@ -1,0 +1,130 @@
+class node{
+    public: 
+    int data;
+    node *next, *arb;
+}
+
+//tc=o(n^2) 
+
+node *find(node *curr1,node *curr2,node *x){
+    if(x==NULL)  return NULL;
+    while(curr1!=x){
+        curr1=curr1->next;
+        curr2=curr2->next;
+    }
+    return curr2;
+}
+
+node *copylist(node *head){
+	node *headcopy=new node(0);
+	node *tailcopy=headcopy;
+	node *temp=head;
+	
+	while(temp){
+	    tailcopy->next=new node(temp->data);
+	    tailcopy=tailcopy->next;
+	    temp=temp->next;
+	}
+	
+	tailcopy=headcopy;
+	headcopy=headcopy->next;
+	delete tailcopy;
+	
+	tailcopy=headcopy;
+	temp=head;
+	while(temp){
+	    tailcopy->arb=find(head,headcopy,temp->arb);
+	    tailcopy=tailcopy->next;
+	    temp=temp->next;
+	}
+    return headcopy;
+}
+
+//optimized solution tc=o(n) sc=o(n)
+
+node *copylist(node *head){
+	node *headcopy=new node(0);
+	node *tailcopy=headcopy;
+	node *temp=head;
+	
+	while(temp){
+	    tailcopy->next=new node(temp->data);
+	    tailcopy=tailcopy->next;
+	    temp=temp->next;
+	}
+	
+	tailcopy=headcopy;
+	headcopy=headcopy->next;
+	delete tailcopy; 
+	
+	tailcopy=headcopy;
+	temp=head;
+	
+	unordered_map<node *,node *>m;
+	while(temp){
+	    m[temp]=tailcopy;
+	    temp=temp->next;
+	    tailcopy=tailcopy->next;
+	}
+	
+	temp=head;
+	tailcopy=headcopy;
+	
+	while(temp){
+	    tailcopy->arb=m[temp->arb];
+	    tailcopy=tailcopy->next;
+	    temp=temp->next;
+	}
+	return headcpy;
+}
+
+//most optimized solution tc=o(n) sc=o(1)
+
+node *copylist(node *head){
+    node *headcopy=new node(0);
+	node *tailcopy=headcopy;
+	node *temp=head;
+	
+	while(temp){
+	    tailcopy->next=new node(temp->data);
+	    tailcopy=tailcopy->next;
+	    temp=temp->next;
+	}
+	
+	tailcopy=headcopy;
+	headcopy=headcopy->next;
+	delete tailcopy; 
+	
+	tailcopy=headcopy;
+	temp=head;
+	
+    node *curr1=head,*curr2=headcopy;
+    node *front1,*front2;
+    
+    while(curr1){
+        front1=curr1->next;
+        front2=curr2->next;
+        curr1->next=curr2;
+        curr2->next=front1;
+        curr1=front1;
+        curr2=front2;
+    }
+    
+    curr1=head; 
+    while(curr1){
+        curr2=curr1->next;
+        
+        if(cur1->arb)
+        curr2->arb=curr1->arb->next;
+        curr1=curr2->next;
+    }
+    
+    curr1=head;
+    while(curr1->next){
+        front1=curr1->next;
+        curr1->next=front1->next;
+        curr1=front1;
+    }
+    
+    return headcopy;
+}
