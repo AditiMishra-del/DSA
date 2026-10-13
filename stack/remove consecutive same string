@@ -1,0 +1,15 @@
+class Solution {
+  public:
+    int removeConsecutiveSame(vector<string>& arr) {
+        // code here
+        stack<string>v;
+        for(int i=0;i<arr.size();i++){
+           if(v.empty()) v.push(arr[i]);
+           else if(v.top()==arr[i])
+            v.pop();
+           else v.push(arr[i]);
+           
+        }
+        return v.size();
+    }
+};
